@@ -1,4 +1,4 @@
-# React Side Projects
+# React Mini Projects
 
 ## Purpose
 This repository is dedicated to showcasing various React projects that demonstrate the capabilities of React.js in building interactive and dynamic web applications. Each project serves as a practical example of React concepts and best practices.
