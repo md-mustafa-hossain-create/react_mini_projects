@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { NotebookPen } from "lucide-react";
+import { NotebookPen, X } from "lucide-react";
 function App() {
   const [heading, setHeading] = useState("");
   const [notesBody, setNotesBody] = useState("");
@@ -28,6 +28,12 @@ function App() {
   //function to handle notes body input
   function handleNotesBody(e) {
     setNotesBody(e.target.value);
+  }
+
+  // function to handle delete note
+  function handleDelete(indexToDelete) {
+    const updatedTask = tasks.filter((_, index) => index !== indexToDelete);
+    setTasks(updatedTask);
   }
 
   return (
@@ -65,17 +71,30 @@ function App() {
           <NotebookPen />
         </div>
 
-        <div className="grid grid-cols-[repeat(auto-fill,minmax(10rem,10rem))] flex-1 justify-center md:justify-start gap-2 overflow-auto content-start [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+        <div className="grid grid-cols-[repeat(auto-fill,minmax(12rem,1fr))] flex-1 justify-center md:justify-start gap-2 overflow-auto content-start [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
           {tasks.map((task, index) => (
             <div
               key={index}
-              className="bg-white h-48 w-40 rounded-2xl text-black p-3 overflow-y-auto flex flex-col gap-1  [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
+              className=" h-56 w-48 rounded-2xl text-black bg-[url('https://static.vecteezy.com/system/resources/previews/037/152/677/non_2x/sticky-note-paper-background-free-png.png')] bg-cover relative overflow-hidden"
             >
-              <div className="font-semibold text-xl leading-tight break-all ">
-                {task.heading}
+              {/* Delete button */}
+              <button
+                onClick={() => handleDelete(index)}
+                className="absolute top-5 right-2 bg-red-500 hover:bg-red-600 text-white rounded-full p-1 transition-all duration-150 active:scale-90 z-10"
+                aria-label="Delete note"
+              >
+                <X size={16} />
+              </button>
+
+              <div className="w-full h-full pt-9 px-3 overflow-y-auto flex flex-col gap-1 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] mask-[linear-gradient(to_bottom,transparent_0%,black_15%,black_90%,transparent_100%)]">
+                <div className="font-semibold text-xl leading-tight break-all ">
+                  {task.heading}
+                </div>
+
+                {task.heading ? <hr /> : ""}
+
+                <div className="break-all text-gray-700 ">{task.notesBody}</div>
               </div>
-              {task.heading ? <hr /> : ""}
-              <div className="break-all text-gray-600 ">{task.notesBody}</div>
             </div>
           ))}
         </div>
