@@ -1,9 +1,17 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { NotebookPen, X } from "lucide-react";
 function App() {
   const [heading, setHeading] = useState("");
   const [notesBody, setNotesBody] = useState("");
   const [tasks, setTasks] = useState([]);
+
+  useEffect(() => {
+    const saveData = localStorage.getItem("myNotes");
+    if (saveData) {
+      const parsedData = JSON.parse(saveData);
+      setTasks(parsedData);
+    }
+  }, []);
 
   // function to handle submit
   function handleSubmit(e) {
@@ -14,7 +22,7 @@ function App() {
       const saveTask = [...tasks];
       saveTask.push({ heading, notesBody });
       setTasks(saveTask);
-      console.log(tasks);
+      localStorage.setItem("myNotes", JSON.stringify(saveTask));
     }
     setHeading("");
     setNotesBody("");
@@ -35,6 +43,7 @@ function App() {
     const copyTask = [...tasks];
     copyTask.splice(indexToDelete, 1);
     setTasks(copyTask);
+    localStorage.setItem("myNotes", JSON.stringify(copyTask));
   }
 
   return (
@@ -87,7 +96,7 @@ function App() {
                 <X size={16} />
               </button>
 
-              <div className="w-full h-full pt-9 px-3 overflow-y-auto flex flex-col gap-1 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] mask-[linear-gradient(to_bottom,transparent_0%,black_15%,black_90%,transparent_100%)]">
+              <div className="w-full h-full pt-10 pb-4 px-3 overflow-y-auto flex flex-col gap-1 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] mask-[linear-gradient(to_bottom,transparent_0%,black_13%,black_90%,transparent_100%)]">
                 <div className="font-semibold text-xl leading-tight break-all ">
                   {task.heading}
                 </div>
