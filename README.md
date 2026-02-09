@@ -1,4 +1,4 @@
-# React Side Projects
+# React Mini Projects
 
 ## Purpose
 This repository is dedicated to showcasing various React projects that demonstrate the capabilities of React.js in building interactive and dynamic web applications. Each project serves as a practical example of React concepts and best practices.
@@ -9,7 +9,7 @@ This repository is dedicated to showcasing various React projects that demonstra
 - **Responsive Design**: All projects are designed to be user-friendly and responsive, ensuring a great user experience across devices.
 
 ## How to Use
-1. **Clone the Repository**: Use the command `git clone https://github.com/md-mustafa-hossain-create/react_side_projects.git` to clone the repository.
+1. **Clone the Repository**: Use the command `git clone https://github.com/md-mustafa-hossain-create/react_mini_projects.git` to clone the repository.
 2. **Navigate to the Project Directory**: Change into the directory of the specific project you want to run.
 3. **Install Dependencies**: Run `npm install` to install the necessary dependencies for the project.
 4. **Start the Development Server**: Execute `npm start` to start the development server and view the project in your browser.
